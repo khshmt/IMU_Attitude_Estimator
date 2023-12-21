@@ -17,9 +17,11 @@ namespace plt = matplotlibcpp;
 
 int main(int argc, char **argv) {
   Eigen::MatrixXd data, measurements, groundtruth;
-  data = IMU::readFromfile(
-      "/home/k-hshmt/cpp_dev/IMU_Attitude_Estimator/IMU_Attitude_Estimator/"
-      "datasets/NAV2_data.bin");
+  if (!argv[1]) {
+    std::cout << "enter the path to a dataset file\n";
+    return EXIT_FAILURE;
+  }
+  data = IMU::readFromfile(argv[1]);
   if (data.isZero()) return 0;
 
   const int Rows = data.rows() - 1;
@@ -55,8 +57,8 @@ int main(int argc, char **argv) {
     quaternion = Mahony.Run(measurements.row(i).transpose());
     Euler1.row(i) = Quaternion_to_Euler(quaternion).transpose();
 
-    // quaternion = ESKF_AHRS.Run(measurements.row(i).transpose());
-    // Euler2.row(i) = Quaternion_to_Euler(quaternion).transpose();
+    quaternion = ESKF_AHRS.Run(measurements.row(i).transpose());
+    Euler2.row(i) = Quaternion_to_Euler(quaternion).transpose();
 
     Index.push_back(i * 1.0);
     Roll.push_back(Euler.row(i)[0]);
@@ -84,7 +86,7 @@ int main(int argc, char **argv) {
   plt::named_plot("EKF", Index, Pitch, "b");
   plt::named_plot("ESKF", Index, Pitch2, "g");
   plt::named_plot("Groundtruth", Index, Pitch_gt, "r");
-  // plt::named_plot("aa", Index, Yaw, "b");
+  plt::named_plot("aa", Index, Yaw, "b");
 
   plt::xlim(0, 1000 * 20);
 

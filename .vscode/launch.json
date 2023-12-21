@@ -7,7 +7,9 @@
             "request": "launch",
             // Resolved by CMake Tools:
             "program": "${command:cmake.launchTargetPath}",
-            "args": [],
+            "args": [
+                "~/cpp_dev/IMU_Attitude_Estimator/IMU_Attitude_Estimator/datasets/NAV2_data.bin"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [

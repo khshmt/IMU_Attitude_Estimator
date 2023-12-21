@@ -76,11 +76,7 @@
       ],
       "generator": "Visual Studio 16 2019",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS": {
-          "type": "STRING",
-          "value": "/DNOMINMAX=1 /bigobj /W4 /MTd /source-charset:utf-8 /execution-charset:utf-8 /wd4251 /wd4244 /wd4305 /wd4267 /wd4127 /Zo /EHsc"
-        }
+        "CMAKE_BUILD_TYPE": "Debug"
       }
     },
     {
@@ -92,11 +88,7 @@
       ],
       "generator": "Visual Studio 16 2019",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_CXX_FLAGS": {
-          "type": "STRING",
-          "value": "/DNOMINMAX=1 /bigobj /W4 /MT /source-charset:utf-8 /execution-charset:utf-8 /wd4251 /wd4244 /wd4305 /wd4267 /wd4127 /O2 /EHsc"
-        }
+        "CMAKE_BUILD_TYPE": "Release"
       }
     },
     {
